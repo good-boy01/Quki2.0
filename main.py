@@ -31,7 +31,7 @@ from urllib.request import urlopen
 
 
 
-openai.api_key ='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'
+openai.api_key ='YOUR_API_HERE'
 
 
 
