@@ -31,7 +31,7 @@ from urllib.request import urlopen
 
 
 
-openai.api_key ='YOUR_API_HERE'
+openai.api_key ='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'
 
 
 
@@ -332,7 +332,7 @@ def run_program():
                 
             elif "will you be my gf" in query or "will you be my bf" in query:  
                 speak("But Im not real ")
-            
+        
             elif "how are you" in query:
                 speak("I'm fine, glad you asked that")
 
@@ -409,6 +409,13 @@ def run_program2():
         if "thank you you can turn off" in query : 
             run_prog = False 
             break
+        elif "say my name" in query : 
+            speak("huisenberg")
+            query = takeCommand().lower()
+            prompt = query
+
+        elif  "what is your name" in query : 
+            speak("my name is quki ")
         response = openai.Completion.create(
             engine='text-davinci-003',  # Choose the engine that suits your needs
             prompt=prompt,  # Your conversation prompt
@@ -419,14 +426,14 @@ def run_program2():
         )
         reply = response.choices[0].text.strip()
         speak(reply)
+        print(reply)
 # Initialize Pygame
 pygame.init()
 
-# Define the dimensions of the window
+
 WINDOW_WIDTH = 1000
 WINDOW_HEIGHT = 800
 
-# Create the window
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Quki")
 
@@ -439,15 +446,13 @@ Title2 = pygame.image.load("push2.png")
 Title_rect2 = Title.get_rect()
 Title_rect2.center = (WINDOW_WIDTH // 1.5 , WINDOW_HEIGHT - 400)
 
-made = pygame.image.load("Made with.png")
-made_rect = Title.get_rect()
-made_rect.center = (WINDOW_WIDTH // 2 +150, WINDOW_HEIGHT -800)
 
 
-# Load the button image
+
+
 button_image = pygame.image.load("button.png")
 button_rect = button_image.get_rect()
-button_rect.center = (WINDOW_WIDTH // 1.5, WINDOW_HEIGHT - 175 )
+button_rect.center = (WINDOW_WIDTH // 1.42, WINDOW_HEIGHT - 175 )
 
 button_image2 = pygame.image.load("button2.png")
 button_rect2 = button_image2.get_rect()
@@ -457,19 +462,21 @@ button_image3 = pygame.image.load("QUKII.png")
 button_rect3 = button_image2.get_rect()
 button_rect3.center = (WINDOW_WIDTH // 4.2 , WINDOW_HEIGHT - 600 )
 
+made = pygame.image.load("made.png")
+made_rect = made.get_rect()
+made_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT - 26 )
 
 
-# Main loop
 running = True
 while running:
-    # Event handling
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            # Check if the button is clicked
+            
             if button_rect.collidepoint(event.pos):
-                # Run main.py file
+                
         
                 
                 wishMe()
@@ -484,19 +491,19 @@ while running:
                 run_program2()
                 
 
-    # Fill the background color
-    window.fill((255,255,255))
 
-    # Draw the button
+    window.fill((29, 91, 121))
+
+    
     window.blit(button_image, button_rect)
     window.blit(Title , Title_rect)
-    window.blit(made , made_rect)
+    
     window.blit(button_image2, button_rect2)
     window.blit(Title2 , Title_rect2)
     window.blit(button_image3, button_rect3)
-    
-    # Update the display
+    window.blit(made, made_rect)
+
     pygame.display.update()
 
-# Quit the program
+
 pygame.quit()
